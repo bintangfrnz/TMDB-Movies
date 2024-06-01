@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'config/index.dart';
 import 'core/helpers/bloc_observer.dart';
+import 'features/movies/presentation/blocs/index.dart';
 import 'features/splash/splash.dart';
 
 void main() {
@@ -15,13 +16,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'TMDB Movies',
-      debugShowCheckedModeBanner: false,
-      theme: LightTheme.theme,
-      navigatorKey: navigatorKey,
-      onGenerateRoute: MyRoutes.onGenerateRoutes,
-      home: const SplashPage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => BnbBloc()),
+      ],
+      child: MaterialApp(
+        title: 'TMDB Movies',
+        debugShowCheckedModeBanner: false,
+        theme: MyLightTheme.theme,
+        navigatorKey: navigatorKey,
+        onGenerateRoute: MyRoutes.onGenerateRoutes,
+        home: const SplashPage(),
+      ),
     );
   }
 }

@@ -12,7 +12,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3)).then(
-      (_) => MyNav.pushNamedAndRemoveUntil('/a', (route) => false),
+      (_) => MyNav.pushNamedAndRemoveUntil(MyRoutes.homeRoute, (route) => false),
     );
     super.initState();
   }

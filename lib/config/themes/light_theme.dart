@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tmdb_movies/core/resources/colors.dart';
 
-class LightTheme {
-  LightTheme._();
+class MyLightTheme {
+  MyLightTheme._();
 
   static const fontFamily = 'SF Pro';
 
