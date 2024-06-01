@@ -6,8 +6,9 @@ import 'core/helpers/bloc_observer.dart';
 import 'features/movies/presentation/blocs/index.dart';
 import 'features/splash/splash.dart';
 
-void main() {
+void main() async {
   Bloc.observer = MyBlocObserver();
+  await initDependencies();
   runApp(const MyApp());
 }
 

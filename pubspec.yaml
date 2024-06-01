@@ -16,12 +16,21 @@ dependencies:
 
   flutter_bloc: ^8.1.5 # state management
   equatable: ^2.0.5 # comparing dart object
+  dio: ^5.4.3+1 # http network
+  retrofit: ^4.1.0 # http network
+  sqflite: ^2.3.3+1 # database
+  floor: ^1.5.0 # database
+  shared_preferences: ^2.2.3 # key-value store
+  get_it: ^7.7.0 # service locator
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^4.0.0
+  build_runner: ^2.4.10 # generate file
+  retrofit_generator: ^8.1.0
+  floor_generator: ^1.5.0
 
 flutter:
 
