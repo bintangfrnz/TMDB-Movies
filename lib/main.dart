@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'config/index.dart';
-import 'core/helpers/bloc_observer.dart';
 import 'features/movies/presentation/blocs/index.dart';
 import 'features/splash/splash.dart';
 
 void main() async {
-  Bloc.observer = MyBlocObserver();
+  // Bloc.observer = MyBlocObserver();
+  WidgetsFlutterBinding.ensureInitialized();
   await initDependencies();
   runApp(const MyApp());
 }
@@ -19,7 +19,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => BnbBloc()),
+        BlocProvider<BnbBloc>(create: (_) => sl()),
+        BlocProvider<FetchMovieBloc>(create: (_) => sl()..add(FetchMovie())),
+        BlocProvider<MovieDetailBloc>(create: (_) => sl()),
+        BlocProvider<SearchMovieBloc>(create: (_) => sl()),
+        BlocProvider<SavedMovieBloc>(create: (_) => sl()..add(GetSavedMovies())),
       ],
       child: MaterialApp(
         title: 'TMDB Movies',

@@ -13,13 +13,13 @@ class MovieDetailModel extends MovieDetailEntity {
   });
 
   factory MovieDetailModel.fromJson(Map<String, dynamic> json) => MovieDetailModel(
-        id: json['id'],
+        id: json['id'].toString(),
         title: json['original_title'],
         overview: json['overview'],
         rating: json['vote_average'],
         backdropPath: json['backdrop_path'],
         posterPath: json['poster_path'],
         releaseDate: json['release_date'],
-        genres: List<String>.from(json['id'].map((genre) => genre['name'])),
+        genres: List<String>.from(json['genres'].map((genre) => genre['name'])),
       );
 }

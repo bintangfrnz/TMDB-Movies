@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:tmdb_movies/core/enums/rating_category.dart';
+import 'package:tmdb_movies/core/extensions/rating_category_ext.dart';
 import 'package:tmdb_movies/core/states/data_state.dart';
 import 'package:tmdb_movies/features/movies/domain/entities/movie.dart';
 import 'package:tmdb_movies/features/movies/domain/entities/movie_detail.dart';
@@ -24,14 +25,7 @@ class MovieRepositoryImpl implements MovieRepository {
     required RatingCategory ratingCategory,
   }) async {
     try {
-      final (ratingGte, ratingLte) = switch (ratingCategory) {
-        RatingCategory.all => (null, null),
-        RatingCategory.unpopular => (0, 2),
-        RatingCategory.bad => (2.1, 4),
-        RatingCategory.good => (4.1, 6),
-        RatingCategory.great => (6.1, 8),
-        RatingCategory.recommended => (8.1, 10),
-      };
+      final (ratingGte, ratingLte) = ratingCategory.getRange();
 
       final httpResponse = await _apiService.getMovieList(
         page: page,

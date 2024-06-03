@@ -29,4 +29,6 @@ class MyDimens {
   static const dp56 = 56.0;
   static const dp60 = 60.0;
   static const dp80 = 80.0;
+  static const dp100 = 100.0;
+  static const dp120 = 120.0;
 }

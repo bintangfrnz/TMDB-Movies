@@ -9,6 +9,7 @@ class MovieModel extends MovieEntity {
     super.rating,
     super.posterPath,
     super.releaseDate,
+    super.overview,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) => MovieModel(
@@ -17,6 +18,7 @@ class MovieModel extends MovieEntity {
         rating: json['vote_average'],
         posterPath: json['poster_path'],
         releaseDate: json['release_date'],
+        overview: json['overview'],
       );
 
   factory MovieModel.fromEntity(MovieEntity entity) => MovieModel(
@@ -25,5 +27,6 @@ class MovieModel extends MovieEntity {
         rating: entity.rating,
         posterPath: entity.posterPath,
         releaseDate: entity.releaseDate,
+        overview: entity.overview,
       );
 }

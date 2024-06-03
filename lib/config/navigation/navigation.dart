@@ -15,8 +15,10 @@ class MyNav {
     );
   }
 
-  static pushNamed(String routeName, {Object? arguments}) {
-    return navigatorKey.currentState?.pushNamed(routeName, arguments: arguments);
+  static pushNamed(String routeName, {Object? arguments, Function()? action}) {
+    return navigatorKey.currentState
+        ?.pushNamed(routeName, arguments: arguments)
+        .then((_) => action?.call());
   }
 
   static pop() => navigatorKey.currentState?.pop();

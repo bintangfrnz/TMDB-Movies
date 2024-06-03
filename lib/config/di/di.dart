@@ -7,6 +7,7 @@ import 'package:tmdb_movies/features/movies/data/data_sources/index.dart';
 import 'package:tmdb_movies/features/movies/data/repositories/movie_repository_impl.dart';
 import 'package:tmdb_movies/features/movies/domain/repositories/movie_repository.dart';
 import 'package:tmdb_movies/features/movies/domain/use_cases/index.dart';
+import 'package:tmdb_movies/features/movies/presentation/blocs/index.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -43,5 +44,10 @@ Future<void> initDependencies() async {
   // endregion use cases
 
   // region blocs
+  sl.registerSingleton<BnbBloc>(BnbBloc());
+  sl.registerSingleton<MovieDetailBloc>(MovieDetailBloc(sl(), sl(), sl(), sl()));
+  sl.registerSingleton<FetchMovieBloc>(FetchMovieBloc(sl()));
+  sl.registerSingleton<SavedMovieBloc>(SavedMovieBloc(sl(), sl()));
+  sl.registerSingleton<SearchMovieBloc>(SearchMovieBloc(sl()));
   // endregion blocs
 }

@@ -96,7 +96,7 @@ class _$MovieDatabase extends MovieDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `movies` (`id` TEXT, `title` TEXT, `rating` REAL, `posterPath` TEXT, `releaseDate` TEXT, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `movies` (`id` TEXT, `title` TEXT, `rating` REAL, `posterPath` TEXT, `releaseDate` TEXT, `overview` TEXT, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -123,7 +123,8 @@ class _$MovieDao extends MovieDao {
                   'title': item.title,
                   'rating': item.rating,
                   'posterPath': item.posterPath,
-                  'releaseDate': item.releaseDate
+                  'releaseDate': item.releaseDate,
+                  'overview': item.overview
                 }),
         _movieModelDeletionAdapter = DeletionAdapter(
             database,
@@ -134,7 +135,8 @@ class _$MovieDao extends MovieDao {
                   'title': item.title,
                   'rating': item.rating,
                   'posterPath': item.posterPath,
-                  'releaseDate': item.releaseDate
+                  'releaseDate': item.releaseDate,
+                  'overview': item.overview
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -155,7 +157,8 @@ class _$MovieDao extends MovieDao {
             title: row['title'] as String?,
             rating: row['rating'] as double?,
             posterPath: row['posterPath'] as String?,
-            releaseDate: row['releaseDate'] as String?));
+            releaseDate: row['releaseDate'] as String?,
+            overview: row['overview'] as String?));
   }
 
   @override
@@ -166,7 +169,8 @@ class _$MovieDao extends MovieDao {
             title: row['title'] as String?,
             rating: row['rating'] as double?,
             posterPath: row['posterPath'] as String?,
-            releaseDate: row['releaseDate'] as String?),
+            releaseDate: row['releaseDate'] as String?,
+            overview: row['overview'] as String?),
         arguments: [id]);
   }
 
