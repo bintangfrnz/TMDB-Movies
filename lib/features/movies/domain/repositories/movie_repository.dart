@@ -1,8 +1,8 @@
 import 'package:tmdb_movies/core/enums/rating_category.dart';
 import 'package:tmdb_movies/core/states/data_state.dart';
-import 'package:tmdb_movies/features/movies/domain/entities/movie_detail.dart';
 
 import '../entities/movie.dart';
+import '../entities/movie_detail.dart';
 
 abstract class MovieRepository {
   // api methods

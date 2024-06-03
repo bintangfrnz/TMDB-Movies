@@ -1,1 +1,1 @@
-enum RatingCategory { all, bad, good, great, recommended }
+enum RatingCategory { all, unpopular, bad, good, great, recommended }

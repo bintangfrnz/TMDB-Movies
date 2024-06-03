@@ -65,7 +65,7 @@ class _MovieApiService implements MovieApiService {
 
   @override
   Future<HttpResponse<MovieDetailModel>> getMovieDetail(
-      {required String movieId}) async {
+      {required int movieId}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

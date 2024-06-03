@@ -26,8 +26,9 @@ class MovieRepositoryImpl implements MovieRepository {
     try {
       final (ratingGte, ratingLte) = switch (ratingCategory) {
         RatingCategory.all => (null, null),
-        RatingCategory.bad => (0, 3),
-        RatingCategory.good => (3.1, 6),
+        RatingCategory.unpopular => (0, 2),
+        RatingCategory.bad => (2.1, 4),
+        RatingCategory.good => (4.1, 6),
         RatingCategory.great => (6.1, 8),
         RatingCategory.recommended => (8.1, 10),
       };
@@ -50,7 +51,9 @@ class MovieRepositoryImpl implements MovieRepository {
   @override
   Future<DataState<MovieDetailEntity>> getMovieDetail(String movieId) async {
     try {
-      final httpResponse = await _apiService.getMovieDetail(movieId: movieId);
+      final httpResponse = await _apiService.getMovieDetail(
+        movieId: int.parse(movieId),
+      );
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
       }

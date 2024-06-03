@@ -96,7 +96,7 @@ class _$MovieDatabase extends MovieDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `movies` (`id` INTEGER NOT NULL, `title` TEXT NOT NULL, `rating` REAL NOT NULL, `posterPath` TEXT NOT NULL, `releaseDate` TEXT NOT NULL, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `movies` (`id` TEXT, `title` TEXT, `rating` REAL, `posterPath` TEXT, `releaseDate` TEXT, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -151,22 +151,22 @@ class _$MovieDao extends MovieDao {
   Future<List<MovieModel>> getMovies() async {
     return _queryAdapter.queryList('SELECT * FROM movies',
         mapper: (Map<String, Object?> row) => MovieModel(
-            id: row['id'] as int,
-            title: row['title'] as String,
-            rating: row['rating'] as double,
-            posterPath: row['posterPath'] as String,
-            releaseDate: row['releaseDate'] as String));
+            id: row['id'] as String?,
+            title: row['title'] as String?,
+            rating: row['rating'] as double?,
+            posterPath: row['posterPath'] as String?,
+            releaseDate: row['releaseDate'] as String?));
   }
 
   @override
   Future<MovieModel?> findMovieById(String id) async {
     return _queryAdapter.query('SELECT * FROM movies WHERE id = ?1',
         mapper: (Map<String, Object?> row) => MovieModel(
-            id: row['id'] as int,
-            title: row['title'] as String,
-            rating: row['rating'] as double,
-            posterPath: row['posterPath'] as String,
-            releaseDate: row['releaseDate'] as String),
+            id: row['id'] as String?,
+            title: row['title'] as String?,
+            rating: row['rating'] as double?,
+            posterPath: row['posterPath'] as String?,
+            releaseDate: row['releaseDate'] as String?),
         arguments: [id]);
   }
 

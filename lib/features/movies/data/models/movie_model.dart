@@ -4,15 +4,15 @@ import 'package:tmdb_movies/features/movies/domain/entities/movie.dart';
 @Entity(tableName: 'movies', primaryKeys: ['id'])
 class MovieModel extends MovieEntity {
   const MovieModel({
-    required super.id,
-    required super.title,
-    required super.rating,
-    required super.posterPath,
-    required super.releaseDate,
+    super.id,
+    super.title,
+    super.rating,
+    super.posterPath,
+    super.releaseDate,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) => MovieModel(
-        id: json['id'],
+        id: json['id'].toString(),
         title: json['original_title'],
         rating: json['vote_average'],
         posterPath: json['poster_path'],

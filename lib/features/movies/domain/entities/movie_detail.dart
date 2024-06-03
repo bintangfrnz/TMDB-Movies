@@ -1,23 +1,35 @@
 import 'package:equatable/equatable.dart';
 
+import 'movie.dart';
+
 class MovieDetailEntity extends Equatable {
-  final String id;
-  final String title;
-  final String overview;
-  final double rating;
-  final String backdropPath;
-  final String releaseDate;
-  final List<String> genres;
+  final String? id;
+  final String? title;
+  final String? overview;
+  final double? rating;
+  final String? backdropPath;
+  final String? posterPath;
+  final String? releaseDate;
+  final List<String>? genres;
 
   const MovieDetailEntity({
-    required this.id,
-    required this.title,
-    required this.overview,
-    required this.rating,
-    required this.backdropPath,
-    required this.releaseDate,
-    required this.genres,
+    this.id,
+    this.title,
+    this.overview,
+    this.rating,
+    this.backdropPath,
+    this.posterPath,
+    this.releaseDate,
+    this.genres,
   });
+
+  MovieEntity toMovie() => MovieEntity(
+        id: id,
+        title: title,
+        rating: rating,
+        posterPath: posterPath,
+        releaseDate: releaseDate,
+      );
 
   @override
   List<Object?> get props => [
@@ -26,6 +38,7 @@ class MovieDetailEntity extends Equatable {
         overview,
         rating,
         backdropPath,
+        posterPath,
         releaseDate,
         genres,
       ];

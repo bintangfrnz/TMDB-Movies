@@ -23,7 +23,7 @@ abstract class MovieApiService {
 
   @GET('/movie/{movie_id}')
   Future<HttpResponse<MovieDetailModel>> getMovieDetail({
-    @Path("movie_id") required String movieId,
+    @Path("movie_id") required int movieId,
   });
 
   @GET('/search/movie')
