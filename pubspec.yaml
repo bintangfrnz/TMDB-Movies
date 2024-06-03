@@ -13,7 +13,8 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-
+  rxdart: ^0.27.7
+  flutter_svg: ^2.0.10+1 # render svg
   flutter_bloc: ^8.1.5 # state management
   equatable: ^2.0.5 # comparing dart object
   dio: ^5.4.3+1 # http network
