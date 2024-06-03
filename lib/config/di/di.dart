@@ -45,7 +45,7 @@ Future<void> initDependencies() async {
 
   // region blocs
   sl.registerSingleton<BnbBloc>(BnbBloc());
-  sl.registerSingleton<MovieDetailBloc>(MovieDetailBloc(sl(), sl(), sl(), sl()));
+  sl.registerSingleton<MovieDetailBloc>(MovieDetailBloc(sl(), sl(), sl(), sl(), sl()));
   sl.registerSingleton<FetchMovieBloc>(FetchMovieBloc(sl()));
   sl.registerSingleton<SavedMovieBloc>(SavedMovieBloc(sl(), sl()));
   sl.registerSingleton<SearchMovieBloc>(SearchMovieBloc(sl()));

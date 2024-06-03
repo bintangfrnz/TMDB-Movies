@@ -5,12 +5,14 @@ class MovieDetailState extends Equatable {
   final bool watchLater;
   final Status status;
   final String? error;
+  final List<MovieEntity> similarMovies;
 
   const MovieDetailState({
     this.movie,
     this.watchLater = false,
     this.status = Status.initial,
     this.error,
+    this.similarMovies = const [],
   });
 
   factory MovieDetailState.initial() => const MovieDetailState();
@@ -20,15 +22,17 @@ class MovieDetailState extends Equatable {
     bool? watchLater,
     Status? status,
     String? error,
+    List<MovieEntity>? similarMovies,
   }) {
     return MovieDetailState(
       movie: movie ?? this.movie,
       watchLater: watchLater ?? this.watchLater,
       status: status ?? this.status,
       error: error,
+      similarMovies: similarMovies ?? this.similarMovies,
     );
   }
 
   @override
-  List<Object?> get props => [movie, watchLater, status, error];
+  List<Object?> get props => [movie, watchLater, status, error, similarMovies];
 }

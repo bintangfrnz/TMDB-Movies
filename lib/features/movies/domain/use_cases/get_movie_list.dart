@@ -17,6 +17,7 @@ class GetMovieListUseCase
     return _repository.getMovieList(
       page: params.page,
       ratingCategory: params.ratingCategory,
+      genres: params.genres,
     );
   }
 }
@@ -24,6 +25,11 @@ class GetMovieListUseCase
 class GetMovieListUseCaseParams {
   final int page;
   final RatingCategory ratingCategory;
+  final String? genres;
 
-  GetMovieListUseCaseParams({required this.page, required this.ratingCategory});
+  GetMovieListUseCaseParams({
+    required this.page,
+    required this.ratingCategory,
+    this.genres,
+  });
 }

@@ -9,6 +9,7 @@ abstract class MovieRepository {
   Future<DataState<List<MovieEntity>>> getMovieList({
     required int page,
     required RatingCategory ratingCategory,
+    String? genres,
   });
   Future<DataState<MovieDetailEntity>> getMovieDetail(String movieId);
   Future<DataState<List<MovieEntity>>> searchMovie({

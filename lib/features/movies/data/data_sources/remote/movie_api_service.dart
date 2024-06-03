@@ -19,6 +19,7 @@ abstract class MovieApiService {
     @Query('include_video') bool includeVideo = false,
     @Query('language') String language = 'en-US',
     @Query('sort_by') String sortBy = 'popularity.desc',
+    @Query('with_genres') String? genres,
   });
 
   @GET('/movie/{movie_id}')

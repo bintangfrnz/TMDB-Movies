@@ -11,7 +11,7 @@ class MovieDetailEntity extends Equatable {
   final String? backdropPath;
   final String? posterPath;
   final String? releaseDate;
-  final List<String>? genres;
+  final List<GenresEntity>? genres;
 
   const MovieDetailEntity({
     this.id,
@@ -46,4 +46,14 @@ class MovieDetailEntity extends Equatable {
         releaseDate,
         genres,
       ];
+}
+
+class GenresEntity extends Equatable {
+  final int? id;
+  final String? name;
+
+  const GenresEntity({this.id, this.name});
+
+  @override
+  List<Object?> get props => [id, name];
 }

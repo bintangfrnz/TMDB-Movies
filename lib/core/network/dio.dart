@@ -9,6 +9,12 @@ class MyDio extends Interceptor {
 
   Dio get dio {
     return Dio(BaseOptions(baseUrl: baseUrl))
-      ..interceptors.add(authorizationInterceptor);
+      ..interceptors.addAll([
+        LogInterceptor(
+          requestBody: true,
+          responseBody: true,
+        ),
+        authorizationInterceptor,
+      ]);
   }
 }

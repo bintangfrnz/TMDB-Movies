@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tmdb_movies/config/index.dart';
 import 'package:tmdb_movies/core/enums/index.dart';
 import 'package:tmdb_movies/core/extensions/index.dart';
 import 'package:tmdb_movies/core/resources/index.dart';
 import 'package:tmdb_movies/core/states/ui_state.dart';
 
 import '../../blocs/detail/movie_detail_bloc.dart';
+import '../../widgets/index.dart';
 import 'sections/flexible_app_bar.dart';
 
 class MovieDetailPage extends StatefulWidget {
@@ -43,29 +45,49 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             _buildTitle(),
             _buildGenres(),
             _buildOverview(),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: MyDimens.dp16),
-              sliver: SliverToBoxAdapter(
-                child: ElevatedButton.icon(
-                  onPressed: () => _showNotImplemented(context),
-                  icon: const Icon(Icons.download_rounded),
-                  label: const Text('Download'),
+            _buildDownloadButton(context),
+            _buildShareButton(context),
+            if (state.similarMovies.isNotEmpty) ...[
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: MyDimens.dp16,
+                  vertical: MyDimens.dp8,
                 ),
-              ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: MyDimens.dp16),
-              sliver: SliverToBoxAdapter(
-                child: ElevatedButton.icon(
-                  onPressed: () => _showNotImplemented(context),
-                  icon: const Icon(Icons.share_rounded),
-                  label: const Text('Share'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: context.theme.colorScheme.inverseSurface,
+                sliver: SliverToBoxAdapter(
+                  child: Text(
+                    'Similar Movies',
+                    style: context.theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                 ),
               ),
-            ),
+              SliverList.builder(
+                itemCount: state.similarMovies.length,
+                itemBuilder: (context, index) {
+                  final movie = state.similarMovies[index];
+                  return MovieCard(
+                    onTap: () => _navigateToDetail(movie.id),
+                    movie: movie,
+                    trailing: Wrap(
+                      spacing: MyDimens.dp4,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.star,
+                          size: MyDimens.dp16,
+                          color: context.theme.colorScheme.secondary,
+                        ),
+                        Text(
+                          movie.getRating(),
+                          style: context.theme.textTheme.labelMedium,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ],
           ],
         );
       },
@@ -120,7 +142,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               itemCount: genres?.length ?? 0,
               separatorBuilder: (context, index) => MyDimens.dp8.width,
               itemBuilder: (context, index) {
-                final genre = genres?[index];
+                final genre = genres?[index].name;
                 return Container(
                   padding: const EdgeInsets.symmetric(horizontal: MyDimens.dp12),
                   decoration: BoxDecoration(
@@ -159,6 +181,35 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     );
   }
 
+  SliverPadding _buildDownloadButton(BuildContext context) {
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: MyDimens.dp16),
+      sliver: SliverToBoxAdapter(
+        child: ElevatedButton.icon(
+          onPressed: () => _showNotImplemented(context),
+          icon: const Icon(Icons.download_rounded),
+          label: const Text('Download'),
+        ),
+      ),
+    );
+  }
+
+  SliverPadding _buildShareButton(BuildContext context) {
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: MyDimens.dp16),
+      sliver: SliverToBoxAdapter(
+        child: ElevatedButton.icon(
+          onPressed: () => _showNotImplemented(context),
+          icon: const Icon(Icons.share_rounded),
+          label: const Text('Share'),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: context.theme.colorScheme.inverseSurface,
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget template(BuildContext context, MovieDetailState state) {
     return switch (state.status) {
       Status.initial => const SizedBox(),
@@ -184,5 +235,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
 
   void _onGetMovieDetail(BuildContext context, String id) {
     context.read<MovieDetailBloc>().add(GetMovieDetail(id: id));
+  }
+
+  void _navigateToDetail(String? id) {
+    MyNav.pushNamed(MyRoutes.movieDetailRoute, arguments: id);
   }
 }

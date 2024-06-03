@@ -27,6 +27,7 @@ class _MovieApiService implements MovieApiService {
     bool includeVideo = false,
     String language = 'en-US',
     String sortBy = 'popularity.desc',
+    String? genres,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -37,6 +38,7 @@ class _MovieApiService implements MovieApiService {
       r'include_video': includeVideo,
       r'language': language,
       r'sort_by': sortBy,
+      r'with_genres': genres,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

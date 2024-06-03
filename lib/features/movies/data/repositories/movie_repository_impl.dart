@@ -23,6 +23,7 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<DataState<List<MovieEntity>>> getMovieList({
     required int page,
     required RatingCategory ratingCategory,
+    String? genres,
   }) async {
     try {
       final (ratingGte, ratingLte) = ratingCategory.getRange();
@@ -31,6 +32,7 @@ class MovieRepositoryImpl implements MovieRepository {
         page: page,
         ratingGte: ratingGte,
         ratingLte: ratingLte,
+        genres: genres,
       );
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
