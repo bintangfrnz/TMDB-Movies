@@ -15,6 +15,13 @@ class MyNav {
     );
   }
 
+  static pushReplacementNamed(String newRouteName, {Object? arguments}) {
+    return navigatorKey.currentState?.pushReplacementNamed(
+      newRouteName,
+      arguments: arguments,
+    );
+  }
+
   static pushNamed(String routeName, {Object? arguments, Function()? action}) {
     return navigatorKey.currentState
         ?.pushNamed(routeName, arguments: arguments)

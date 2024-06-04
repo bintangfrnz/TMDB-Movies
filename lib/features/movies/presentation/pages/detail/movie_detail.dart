@@ -248,7 +248,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     context.read<MovieDetailBloc>().add(GetMovieDetail(id: id));
   }
 
-  void _navigateToDetail(String? id) {
-    MyNav.pushNamed(MyRoutes.movieDetailRoute, arguments: id);
+  Future<void> _navigateToDetail(String? id) async {
+    await MyNav.pushReplacementNamed(MyRoutes.movieDetailRoute, arguments: id);
   }
 }
