@@ -41,7 +41,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       builder: (context, state) {
         return CustomScrollView(
           slivers: [
-            _buildAppBar(state),
+            _buildAppBar(context, state),
             _buildTitle(),
             _buildGenres(),
             _buildOverview(),
@@ -94,13 +94,24 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     );
   }
 
-  SliverAppBar _buildAppBar(MovieDetailState state) {
+  SliverAppBar _buildAppBar(BuildContext context, MovieDetailState state) {
     return SliverAppBar(
-      leadingWidth: 80,
-      leading: Padding(
-        padding: const EdgeInsets.only(left: MyDimens.dp16, top: MyDimens.dp4),
-        child: SvgPicture.asset(MyAssets.logoAltShort),
+      leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back_ios_rounded,
+          color: context.theme.scaffoldBackgroundColor,
+        ),
+        onPressed: MyNav.pop,
       ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: MyDimens.dp20, top: MyDimens.dp8),
+          child: SvgPicture.asset(
+            MyAssets.logoAltShort,
+            width: 80,
+          ),
+        )
+      ],
       pinned: true,
       expandedHeight: 300.0,
       flexibleSpace: const MyAppSpace(),

@@ -6,7 +6,12 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: Text('Settings')),
+      body: Center(
+        child: Text(
+          'will be implemented with\nthe auth feature',
+          textAlign: TextAlign.center,
+        ),
+      ),
     );
   }
 }
