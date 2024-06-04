@@ -32,7 +32,7 @@ The **TMDB Movies** was built using Flutter and connected to the [TMDB API](http
 
 ## How to Run
 
-You don't need to run the project. Download the APK on [release page](https://github.com/bintangfrnz/TMDB-Movies/releases/tag/v.1.0).
+You don't need to run the project. Download the APK on [release page](https://github.com/bintangfrnz/TMDB-Movies/releases/tag/V.1.0.0).
 > note: only for Android
 
 ## Tech Stack
